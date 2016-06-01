@@ -1,0 +1,10 @@
+alpine-0.1.0:
+  name: alpine
+  url: http://github.com/michelleN/world-of-charts/alpine-0.1.0.tgz
+  created: 2016-06-01 20:53:14.229896776 +0000 UTC
+  checksum: eb1e10253038263b2a0cfeef5a6b733f71111d95
+  chartfile:
+    name: alpine
+    description: Deploy a basic Alpine Linux pod
+    version: 0.1.0
+    home: https://github.com/kubernetes/helm
