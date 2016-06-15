@@ -1,0 +1,31 @@
+language: go
+
+go: 
+  - 1.6
+
+before_install:
+  - export GLIDE_VERSION="0.10.1"
+  - ls $GOPATH/src/
+  - wget "https://github.com/Masterminds/glide/releases/download/$GLIDE_VERSION/glide-$GLIDE_VERSION-linux-amd64.tar.gz"
+  - mkdir -p $HOME/bin
+  - tar -vxz -C $HOME/bin --strip=1 -f glide-$GLIDE_VERSION-linux-amd64.tar.gz
+  - export PATH="$HOME/bin:$PATH" GLIDE_HOME="$HOME/.glide"
+
+install:
+  - cd $GOPATH/src/
+  - mkdir k8s.io
+  - cd k8s.io
+  - git clone https://github.com/kubernetes/helm
+  - cd helm
+  - make bootstrap build
+  - mv bin/helm $HOME/bin
+
+script:
+  - helm
+  - pwd
+  # lint the chart (Assuming one new chart per PR for now)
+  # TODO: spin up local cluster and install new chart
+
+after_success:
+  # let the kubernetes-charts bucket know there is a new chart
+  # TODO: set up notification channel for the kubernetes-chartsbucket
