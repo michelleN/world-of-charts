@@ -21,8 +21,12 @@ install:
   - mv bin/helm $HOME/bin
 
 script:
-  - helm
+  - cd $GOPATH/src/github.com/michelleN/world-of-charts
+  - ls
+  - git status
+  - git show
   - pwd
+  - helm lint
   # lint the chart (Assuming one new chart per PR for now)
   # TODO: spin up local cluster and install new chart
 
