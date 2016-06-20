@@ -27,7 +27,7 @@ script:
 
 after_success:
   if [ "$TRAVIS_BRANCH" == "master" ]; then
-    echo "HI IM MASTER";
+    $GOPATH/src/k8s.io/helm/scripts/sync-repo.sh $GOPATH/src/github.com/michelleN/world-of-charts kubernetes/ fantastic-charts;
   fi
   # let the kubernetes-charts bucket know there is a new chart
   # TODO: set up notification channel for the kubernetes-chartsbucket
