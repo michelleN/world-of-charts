@@ -1,6 +1,6 @@
 language: go
 
-go: 
+go:
   - 1.6
 
 before_install:
@@ -22,14 +22,12 @@ install:
 
 script:
   - cd $GOPATH/src/github.com/michelleN/world-of-charts
-  - ls
-  - git status
-  - git show
-  - pwd
-  - helm lint
-  # lint the chart (Assuming one new chart per PR for now)
+  #- helm lint --repo # lints all packaged charts in this repo
   # TODO: spin up local cluster and install new chart
 
 after_success:
+  if ["$TRAVIS_BRANCH" == "master"]; then
+    echo "HI IM MASTER";
+  fi
   # let the kubernetes-charts bucket know there is a new chart
   # TODO: set up notification channel for the kubernetes-chartsbucket
